@@ -41,10 +41,12 @@ if (!WEBAPP_URL || !WEBAPP_URL.startsWith("http")) {
 }
 
 const maybeWebsiteURL = process.env.NEXT_PUBLIC_WEBSITE_URL;
-export const CAL_URL =
-  new URL(WEBAPP_URL).hostname.endsWith(".vercel.app") || !maybeWebsiteURL || maybeWebsiteURL === "https://"
-    ? WEBAPP_URL
-    : maybeWebsiteURL;
+const DEFAULT_WEBAPP_URL = process.env.NEXT_PUBLIC_WEBAPP_URL || 'http://localhost:3000';
+
+export const CAL_URL = new URL(DEFAULT_WEBAPP_URL).hostname.endsWith(".vercel.app")
+  ? DEFAULT_WEBAPP_URL
+  : process.env.NEXT_PUBLIC_WEBSITE_URL || DEFAULT_WEBAPP_URL;
+
 export const IS_CALCOM =
   WEBAPP_URL &&
   (new URL(WEBAPP_URL).hostname.endsWith("cal.com") ||
