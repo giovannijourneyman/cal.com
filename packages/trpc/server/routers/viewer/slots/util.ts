@@ -1266,14 +1266,14 @@ export class AvailableSlotsService {
 
           const existingBooking = currentSeatsMap.get(timeISO);
 
-          r[dateString].push({
-            ...passThroughProps,
-            time: timeISO,
-            ...(existingBooking && {
-              attendees: existingBooking.attendees,
-              bookingUid: existingBooking.uid,
-            }),
-          });
+r[dateString].push({
+  ...passThroughProps,
+  time: timeISO,
+  ...(existingBooking && {
+    attendees: existingBooking.attendees,
+    bookingUid: existingBooking.uid,
+  }),
+});
           return r;
         },
         Object.create(null)
